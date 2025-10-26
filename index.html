@@ -43,7 +43,7 @@
         }
 
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background-color: var(--md-sys-color-surface);
             color: var(--md-sys-color-on-surface);
             min-height: 100vh;
@@ -98,10 +98,11 @@
             padding: 24px;
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--md-sys-elevation-1);
-            text-decoration: none;
             color: var(--md-sys-color-on-surface-variant);
             position: relative;
             overflow: hidden;
+            font-size: inherit;
+            font-family: inherit;
         }
 
         .service-card::before {
@@ -186,31 +187,25 @@
         <p class="subtitle">Your Server Hub</p>
         
         <div class="grid">
-            <a href="javascript:void(0)" class="service-card" onclick="navigateToCockpit()">
+            <button class="service-card" onclick="navigateToService(9090)">
                 <div class="service-icon">🚁</div>
                 <div class="service-name">Cockpit</div>
                 <div class="service-port">:9090</div>
-            </a>
+            </button>
             
-            <a href="javascript:void(0)" class="service-card" onclick="navigateToImmich()">
+            <button class="service-card" onclick="navigateToService(2283)">
                 <div class="service-icon">📸</div>
                 <div class="service-name">Immich</div>
                 <div class="service-port">:2283</div>
-            </a>
+            </button>
         </div>
     </div>
 
     <script>
-        function navigateToCockpit() {
+        function navigateToService(port) {
             const currentDomain = window.location.hostname;
             const protocol = window.location.protocol;
-            window.location.href = `${protocol}//${currentDomain}:9090`;
-        }
-
-        function navigateToImmich() {
-            const currentDomain = window.location.hostname;
-            const protocol = window.location.protocol;
-            window.location.href = `${protocol}//${currentDomain}:2283`;
+            window.location.href = `${protocol}//${currentDomain}:${port}`;
         }
     </script>
 </body>
